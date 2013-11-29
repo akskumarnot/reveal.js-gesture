@@ -1,19 +1,21 @@
-video=document.getElementById('video')
-canvas=document.getElementById('canvas')
-_=canvas.getContext('2d')
-ccanvas=document.getElementById('comp')
-c_=ccanvas.getContext('2d')
+video=document.getElementById('video');
+canvas=document.getElementById('canvas');
+_=canvas.getContext('2d');
+ccanvas=document.getElementById('comp');
+c_=ccanvas.getContext('2d');
 navigator.webkitGetUserMedia({audio:true,video:true},function(stream){
-	s=stream
-	video.src=window.webkitURL.createObjectURL(stream)
+	s = stream;
+	video.src = window.webkitURL.createObjectURL(stream)
 	video.addEventListener('play',
 		function(){setInterval(dump,1000/25)}
 	)
 },function(){
 	console.log('OOOOOOOH! DEEEEENIED!')
-})
+});
+
 compression=5
 width=height=0
+
 function dump(){
 	if(canvas.width!=video.videoWidth){
 		width=Math.floor(video.videoWidth/compression)
@@ -27,12 +29,15 @@ function dump(){
 	skinfilter()
 	test()	
 }
-huemin=0.0
+
 huemax=0.10
-satmin=0.0
 satmax=1.0
-valmin=0.4
 valmax=1.0
+
+huemin=0.0
+satmin=0.0
+valmin=0.4
+
 function skinfilter(){
 	
 	skin_filter=_.getImageData(0,0,width,height)
