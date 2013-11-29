@@ -6,9 +6,10 @@ c_=ccanvas.getContext('2d');
 navigator.webkitGetUserMedia({audio:true,video:true},function(stream){
 	s = stream;
 	video.src = window.webkitURL.createObjectURL(stream)
-	video.addEventListener('play',
-		function(){setInterval(dump,1000/25)}
-	)
+
+	video.addEventListener('play', function (){
+        setInterval(dump,1000/25)
+    });
 },function(){
 	console.log('OOOOOOOH! DEEEEENIED!')
 });
@@ -19,7 +20,7 @@ width=height=0
 function dump(){
 	if(canvas.width!=video.videoWidth){
 		width=Math.floor(video.videoWidth/compression)
-		height=Math.floor(video.videoHeight/compression)
+		height = Math.floor(video.videoHeight/compression)
 		canvas.width=ccanvas.width=width
 		canvas.height=ccanvas.height=height
 	}
